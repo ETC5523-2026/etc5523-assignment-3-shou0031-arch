@@ -1,0 +1,28 @@
+/* Custom theming */
+
+/* Background colours */
+body {
+  background-color: #FBF7F0;
+  color: #2B2B2B;
+}
+
+.navbar {
+  background-color: #2F2A26 !important;
+}
+
+/* Heading font colours */
+h1, h2, h3, h4, h5, h6,
+.title {
+  color: #7A2E12;
+}
+
+/* Link colour */
+a {
+  color: #B4441C;
+}
+
+.navbar .navbar-title,
+.navbar .nav-link,
+.navbar .bi {
+  color: #F4EDE3 !important;
+}

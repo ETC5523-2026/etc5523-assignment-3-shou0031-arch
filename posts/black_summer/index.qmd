@@ -1,0 +1,146 @@
+---
+title: "Was Black Summer just bad luck?"
+author: "Socheaneath Hour"
+date: "2026-10-14"
+bibliography: references.bib
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: setup
+library(tibble)
+library(dplyr)
+library(ggplot2)
+library(knitr)
+```
+
+## Was it bad luck, or a sign of things to come?
+
+When the Black Summer fires were burning, I was 16 and living in Cambodia. I honestly didn't hear about them at the time. It was only after I moved to Australia in 2023 and started learning more about the country that I realised how big they were.
+
+Between late 2019 and early 2020, fires burned through more than 19 million hectares of south-eastern Australia. Thirty-four people died, thousands of homes were lost, and more than a billion animals are estimated to have been killed. Smoke covered whole cities and the sky turned orange in the middle of the day.
+
+I've always found natural disasters worrying because they affect all of us and they're something we should keep paying attention to and not just when they're in the news. So when I read about Black Summer, the question I kept coming back to was the same one a lot of Australians asked: was this just a terrible year, or is climate change making seasons like this more likely?
+
+The answer matters, because it changes what we should expect next. In this post I look at what one major scientific study found, and try to answer three questions:
+
+1.  Did climate change make the dangerous fire weather of 2019–20 more likely?
+2.  Which mattered more: the heat, or the drought?
+3.  What does this mean for future summers?
+
+## What the evidence shows
+
+### Where the evidence comes from
+
+The findings here come from a 2021 study by a team of climate scientists led by Geert Jan van Oldenborgh, published in the journal *Natural Hazards and Earth System Sciences* [@vanoldenborgh2021]. Their field is called "attribution science", which tries to work out how much climate change has changed the odds of a particular extreme event.
+
+They used three kinds of evidence:
+
+-   **Weather records**: daily measurements of temperature, humidity, wind and rain across the forests of south-eastern Australia from 1979, plus older station records going back to around 1900.
+-   **Climate models**: computer simulations of the climate run both with and without the greenhouse gases humans have added, so the two worlds can be compared.
+-   **A fire danger score**: the Fire Weather Index, which combines heat, dryness and wind into one number and matches up well with how much land actually burns.
+
+The basic comparison is simple: how likely was weather like Black Summer's in today's climate, compared with the climate of about 1900, before most human-caused warming?
+
+### The fire weather is now more likely
+
+For the first question, the answer is yes. @fig-likelihood shows how many times more likely each type of extreme has become since around 1900. Anything to the right of the dashed line is more likely now than it used to be.
+
+```{r}
+#| label: fig-likelihood
+#| fig-cap: "How much more likely Black Summer's conditions are today than around 1900. Each bar is the smallest increase the scientists could confirm, so the real change may be bigger. Data: van Oldenborgh et al. (2021)."
+#| fig-alt: "Horizontal bar chart. Fire weather at 2 degrees of warming is at least 4 times as likely, fire weather from weather records at least 4 times, extreme heat at least 2 times, fire weather from climate models at least 1.3 times, and drought shows no clear change at 1 times."
+#| fig-width: 8
+#| fig-height: 4.6
+
+likelihood <- tribble(
+  ~condition,                                   ~ratio, ~type,
+  "Drought (low rainfall)",                       1.0,  "No clear change",
+  "Fire weather\n(climate models)",               1.3,  "Today vs 1900",
+  "Extreme heat",                                 2.0,  "Today vs 1900",
+  "Fire weather\n(weather records)",              4.0,  "Today vs 1900",
+  "Fire weather if the world\nwarms to 2°C",      4.0,  "Future (2°C warming)"
+) |>
+  mutate(
+    condition = factor(condition, levels = condition),
+    label = if_else(ratio == 1, "no clear change", paste0("at least ", ratio, "×"))
+  )
+
+ggplot(likelihood, aes(x = ratio, y = condition, fill = type)) +
+  geom_col(width = 0.62) +
+  geom_vline(xintercept = 1, linetype = "dashed", colour = "#5A524B") +
+  annotate("text", x = 1.05, y = 5.45, label = "Same odds as 1900",
+           hjust = 0, size = 3.6, colour = "#5A524B") +
+  geom_text(aes(label = label), hjust = -0.12, size = 4.2, colour = "#2B2B2B") +
+  scale_fill_manual(values = c("No clear change" = "#BDB3A7",
+                               "Today vs 1900" = "#B4441C",
+                               "Future (2°C warming)" = "#7A2E12")) +
+  scale_x_continuous(limits = c(0, 5.7), breaks = 0:5,
+                     labels = c("0", "1×", "2×", "3×", "4×", "5×"),
+                     expand = c(0, 0)) +
+  labs(x = "Times as likely as around 1900", y = NULL, fill = NULL) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "top",
+    legend.justification = "left",
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.background = element_rect(fill = "#FBF7F0", colour = NA),
+    axis.text.y = element_text(colour = "#2B2B2B")
+  )
+```
+
+Using the climate models, the scientists found that fire weather as extreme as Black Summer's is at least 30% more likely than it was around 1900. Using real weather records, the increase is much bigger: at least four times as likely. The scientists treat the 30% figure as a minimum, because the models tend to warm more slowly than the real world has.
+
+### Heat, not drought, did the damage
+
+A bad fire season needs both heat and dryness, so the second question is which one climate change is actually affecting. @tbl-ingredients splits the two apart.
+
+```{r}
+#| label: tbl-ingredients
+#| tbl-cap: "Black Summer's ingredients: what has changed since around 1900, and whether climate change is behind it."
+
+ingredients <- tribble(
+  ~`Ingredient`,               ~`What changed since ~1900`,              ~`Linked to climate change?`,
+  "Extreme heat",              "At least 2× as likely",                  "Yes, and the biggest single driver",
+  "Overall fire danger",       "At least 1.3× (models) to 4× (records)", "Yes",
+  "Drought (low rainfall)",    "No clear change",                        "No, mainly natural weather patterns",
+  "Fire danger at 2°C warming", "At least 4× as likely",                 "Expected to keep rising"
+)
+
+kable(ingredients, align = "lll")
+```
+
+Heat is the main driver. A week of extreme heat like the one in December 2019 is now at least twice as likely and rising temperatures explain roughly a third to a half of the increase in fire danger.
+
+The drought was different and this was the part that surprised me most. I assumed the record-low rainfall of 2019 would be linked to climate change too but the study found no clear link. It mostly came from two natural ocean and wind patterns, the Indian Ocean Dipole and the Southern Annular Mode, which both happened to line up badly that year. So nature dealt a dry year and a warmer climate made the heat on top of it worse.
+
+What also stayed with me while reading about this was how far and how fast the fires spread, and how easily everything in their path was destroyed. Behind the numbers in this post are the 34 people who lost their lives, and their families.
+
+### And the future?
+
+The last row of @tbl-ingredients answers the third question. If global warming reaches 2°C above pre-industrial levels, a fire season like Black Summer becomes at least four times as likely as it was around 1900, according to the models.
+
+One thing to keep in mind: these numbers are minimums, not exact predictions. The scientists deliberately chose cautious estimates, and the study only looks at the weather. It doesn't include things like how much fuel was on the ground, how fires started, or how well communities were prepared, which all affect how much damage a fire season causes.
+
+## The bottom line
+
+So, was Black Summer just bad luck? Partly, but not completely. The drought that dried out the forests was mostly natural bad luck. The extreme heat on top of it was not: climate change made that heat, and the fire danger that came with it, more likely [@vanoldenborgh2021].
+
+Going back to the three questions:
+
+-   **Did climate change make the fire weather more likely?** Yes. By at least 30% according to the models, and around four times according to real weather records.
+-   **Heat or drought?** Heat. Rising temperatures are the main way climate change is raising fire risk, while the drought came mostly from natural patterns.
+-   **What about the future?** The odds keep going up as the planet warms. At 2°C of warming, a season like Black Summer becomes at least four times as likely as in 1900.
+
+For me, the biggest takeaway is that we can't treat seasons like this as a one-off. Summers like 2019–20 should be planned for, not just remembered. I also think it's a reminder that the small things we do add up. Living more sustainably, cutting down on unnecessary waste and being more aware of our everyday choices might feel small on their own, but together they shape the kind of planet, and the kind of summers, we end up with.
+
+Do you remember where you were during Black Summer? I’d love to hear.
+
+## References
+
+::: {#refs}
+:::

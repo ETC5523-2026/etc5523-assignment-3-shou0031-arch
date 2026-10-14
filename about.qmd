@@ -14,7 +14,7 @@ about:
       href: https://www.linkedin.com/in/socheaneath-hour-b355b3300/
     - icon: journal-text
       text: Blog
-      href: index.qmd
+      href: https://etc5523-2026.github.io/etc5523-assignment-3-shou0031-arch/
 ---
 
 Hi, I'm Socheaneath! I'm currently doing my Master of Business Analytics at Monash University after finishing my Bachelor of Business Analytics at La Trobe.

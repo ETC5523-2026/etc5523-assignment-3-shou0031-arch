@@ -6,3 +6,9 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: true
+
+# hide code, messages and warnings in all posts
+execute:
+  echo: false
+  message: false
+  warning: false

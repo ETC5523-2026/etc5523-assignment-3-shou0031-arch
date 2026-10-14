@@ -1,13 +1,38 @@
 ---
-title: "About"
+title: "Socheaneath Hour"
 image: profile.jpg
 about:
   template: jolla
+  image-shape: round
+  image-width: 14em
   links:
     - icon: github
-      text: Github
-      href: https://github.com/etc5523-2022
-
+      text: GitHub
+      href: https://github.com/shou0031-arch
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/socheaneath-hour-b355b3300/
+    - icon: journal-text
+      text: Blog
+      href: index.qmd
 ---
 
-This is a blog template for the ETC5523 Communicating with Data assessment at Monash University.
+Hi, I'm Socheaneath! I'm currently doing my Master of Business Analytics at Monash University after finishing my Bachelor of Business Analytics at La Trobe.
+
+At La Trobe I built a foundation in statistics, data management and business decision-making. In my capstone year I worked on an industry project with NAB (National Australia Bank) where our team explored how to make an agricultural business greener. Working with a real organisation showed me how analytics fits into a business: understanding what the client actually needs, working as part of a team and presenting results in a way that people outside data science can act on.
+
+Around the same time I got involved with Google Developer Groups (GDG) and ended up pitching an idea for a remotely operated excavator. The plan was to train AI models on past and live data so the machine gets better the more it works and also with sensors to help it read its surroundings. My team and I had to sell both the code and the business side to a room of people from very different backgrounds which was nerve-wracking but a lot of fun. The feedback we received was very helpful and they mentioned that we were the third runner up which they weren't able to announce since there were only 2 winners.
+
+These days I also work in client acquisition at Nolyvra, a SaaS company. A big part of my job is talking to potential clients and working out whether our product can solve their problem. I recently went up to Brisbane with the team for the AHRI (Australian HR Institute) event to represent Nolyvra which meant a lot of conversations with HR professionals and a lot of standing at a booth. The experience was surreal since I'm still a student so being in a professional setting with many big companies was not a breeze but I managed to make it till the end successfully.
+
+I like data most when it helps someone make a decision. That's what this blog is for: taking research that's written for specialists and explaining it so anyone can follow. My first post is about climate change and the Black Summer bushfires.
+
+Long term, I'd love to start my own logistics business. My family has always been big on doing business so naturally I'd pick up some interest and knowledge within the industry.
+
+## Contact
+
+|  |  |
+|---------------------------|--------------------------------------------|
+| <i class="bi bi-github"></i> | [shou0031-arch](https://github.com/shou0031-arch) |
+| <i class="bi bi-envelope"></i> | shou0031\@student.monash.edu |
+| <i class="bi bi-geo-alt-fill"></i> | Monash University<br>Clayton, VIC 3800<br>Australia |

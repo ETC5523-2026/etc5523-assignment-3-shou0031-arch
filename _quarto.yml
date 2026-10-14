@@ -1,17 +1,15 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "blog-template"
+  title: "Socheaneath Hour"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/etc5523-2022
+        href: https://github.com/shou0031-arch
 format:
   html:
     theme: cosmo
     css: styles.css
-
-
-
